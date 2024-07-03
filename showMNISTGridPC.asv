@@ -1,0 +1,22 @@
+% showMNISTGridPC.m - Function to call show1mnist.m function in a loop
+% showMNISTGridPC will call the show1mnist.m function in a loop so that it
+% can visualize 10 different patterns (all for target value = 1)
+% 10 different times (i.e., target value = 1 will be visualized 10 times)
+% in a matrix of subplots
+%
+% SYNTAX: showMNISTGrid(data, columns);
+%
+% where 'data' is a 784x10 matrix, where m/i = feature and n/j = pattern
+function showMNISTGridPC(data, columns)
+
+figure('Position', [100, 100, 1200, 800]); % create a new figure
+
+%FOR-LOOP ITERATING THROUGH ALL 10 VISUALIZATIONS
+    for i = 1:length(columns)
+        subplot(2, 5, i); % create a subplot in a 10x10 grid for all ith iterations
+        show1mnist(data(:,columns(i))); % call the show1mnist function that will take all the rows from the ith column and perform the visualization
+        axis off; % control whether the axis is on or off
+        title(sprintf('Pattern %d', columns(i)));
+    end
+end
+%first 10 patterns containing a label of '1' are: [4, 7, 9, 15, 24, 25, 41, 60, 68, 71]
